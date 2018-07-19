@@ -1,8 +1,5 @@
 provider "aws" {
    region = "us-east-2"
-#   profile = "terraform1"
-#   access_key = "AKIAIQTOGBGEWHAWUXSQ"
-#   secret_key = "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"
 }
 
 resource "aws_vpc" "my_vpc"{
