@@ -1,11 +1,11 @@
-pipeline{
+pipeline {
  agent any
-    stages{
-        stage('init'){
+    stages {
+        stage('init') {
            steps{ sh 'sudo /terraform/test2/terraform init'}
 		     }
 		
-        stage('plan'){
+        stage('plan') {
             steps{ sh 'sudo /terraform/test2/terraform plan'}
                      }
 
