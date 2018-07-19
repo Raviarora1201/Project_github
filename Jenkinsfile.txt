@@ -1,14 +1,9 @@
-pipeline {
- agent any
-    stages {
-        stage('init') {
-           sh 'sudo /terraform/test2/terraform init'
-		     }
-		
-        stage('plan') {
-            sh 'sudo /terraform/test2/terraform plan'
-                     }
-
-
-             }
+node {
+     stage("checkout") {
+           git url: "https://github.com/Raviarora1201/Project_github"
+           sh "terraform init"
+          }
+     stage("plan") {
+         sh "terraform plan -out=plan.out -no-color"
+         }
 }
