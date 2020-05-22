@@ -1,1 +1,2 @@
  #varibles 
+ variables declare
