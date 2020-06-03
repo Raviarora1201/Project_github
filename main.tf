@@ -1,5 +1,5 @@
 provider "aws" {
-   
+
 }
 
 resource "aws_vpc" "my_vpc"{
@@ -7,13 +7,13 @@ resource "aws_vpc" "my_vpc"{
     instance_tenancy = "default"
     enable_dns_hostnames = "true"
     tags{
-        name = "my_vpc"
+        name = "myfirst_vpc"
 }
 }
 resource "aws_internet_gateway" "my_internet_gateway"{
     vpc_id = "${aws_vpc.my_vpc.id}"
     tags{
-        name = "my_internet_gateway"
+        name = "myfirst_internet_gateway"
 }
 }
 
@@ -44,17 +44,17 @@ resource "aws_subnet" "my_public_subnet1"{
    map_public_ip_on_launch = true
    availability_zone = "us-east-2a"
    tags{
-          name = "my Public Subnet1"
+          name = "myfirst Public Subnet1"
        }
 }
 
 resource "aws_subnet" "my_public_subnet3"{
    vpc_id = "${aws_vpc.my_vpc.id}"
    cidr_block = "10.10.3.0/24"
-   map_public_ip_on_launch = true        
+   map_public_ip_on_launch = true
    availability_zone = "us-east-2b"
    tags{
-         name = "my Public Subnet3"
+         name = "myfirst Public Subnet3"
        }
 }
 
@@ -106,12 +106,12 @@ resource "aws_security_group" "my_public_security_group"{
    name = "public security group"
    description = " Use for linux intance access through SSh"
    vpc_id = "${aws_vpc.my_vpc.id}"
-   
+
    ingress{
           from_port = 22
           to_port = 22
           protocol = "tcp"
-          cidr_blocks = ["0.0.0.0/0"]  
+          cidr_blocks = ["0.0.0.0/0"]
           }
     egress{
           from_port = 0
@@ -148,7 +148,7 @@ resource "aws_instance" "my-instance1"{
         volume_size = 500
         delete_on_termination = true
         }
-      
+
        provisioner "file"{
         source = "/root/script.sh"
         destination = "/tmp/script.sh"
